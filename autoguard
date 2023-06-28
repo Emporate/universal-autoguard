@@ -1,0 +1,24 @@
+_G.brah = false
+
+_G.keybind = "z"
+
+game.Players.LocalPlayer:GetMouse().KeyDown:connect(
+function(key)
+if key:lower() == _G.keybind and _G.brah == false then
+_G.brah = true
+for i, v in pairs(game.Players:GetPlayers()) do
+if v.Name ~= game.Players.LocalPlayer.Character.Name and (v.Character.Torso.CFrame.p - game.Players.LocalPlayer.Character.Torso.CFrame.p).Magnitude < 20 then
+while _G.brah == true do
+if v.Character.Torso.Velocity.magnitude > 0.2 then
+game.Players.LocalPlayer.Character.Humanoid:MoveTo(v.Character.Torso.CFrame.p + v.Character.Torso.Velocity.unit * 7)
+else
+game.Players.LocalPlayer.Character.Humanoid:MoveTo(v.Character.Torso.CFrame.p)
+end
+wait()
+end
+end
+end
+elseif key:lower() == _G.keybind and _G.brah == true then
+_G.brah = false
+end
+end)
